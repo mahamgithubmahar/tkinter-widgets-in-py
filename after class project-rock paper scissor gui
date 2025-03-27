@@ -1,0 +1,38 @@
+from tkinter import *
+from tkinter import messagebox
+import random
+
+root = Tk()
+root.title("Rock Paper Scissors")
+root.geometry("300x300")
+
+def play_game(player):
+    choices = ["Rock", "Paper", "Scissors"]
+    computer = random.choice(choices)
+    computerL.config(text="Computer: " + computer)
+    
+    if player == computer:
+        result = "It's a Tie!"
+    elif (player == "Rock" and computer == "Scissors") or \
+         (player == "Paper" and computer == "Rock") or \
+         (player == "Scissors" and computer == "Paper"):
+        result = "You Win!"
+    else:
+        result = "You Lose!"
+    resultL.config(text="Result: " + result)
+
+def player(choice):
+    play_game(choice)
+
+rockB = Button(root, text="Rock", width=15, command=lambda: player("Rock"))
+paperB = Button(root, text="Paper", width=15, command=lambda: player("Paper"))
+scissorsB = Button(root, text="Scissors", width=15, command=lambda: player("Scissors"))
+computerL = Label(root, text="Computer: ", font=("Arial", 12))
+resultL = Label(root, text="Result: ", font=("Arial", 12))
+rockB.pack(pady=10)
+paperB.pack(pady=10)
+scissorsB.pack(pady=10)
+computerL.pack(pady=10)
+resultL.pack(pady=10)
+
+root.mainloop()
